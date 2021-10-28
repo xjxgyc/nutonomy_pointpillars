@@ -1,11 +1,12 @@
 import math
 from pathlib import Path
 
-from second.utils.buildtools.pybind11_build import load_pb11
-from second.utils.find import find_cuda_device_arch
 import numba
 import numpy as np
+from second.utils.buildtools.pybind11_build import load_pb11
+from second.utils.find import find_cuda_device_arch
 
+"""
 try:
     from second.core.non_max_suppression.nms import (
         non_max_suppression_cpu, rotate_non_max_suppression_cpu)
@@ -18,8 +19,11 @@ except:
         cuda=True)
     from second.core.non_max_suppression.nms import (
         non_max_suppression_cpu, rotate_non_max_suppression_cpu)
-
+"""
 from second.core import box_np_ops
+# replace c++ version(above) non_max_supperssion
+from spconv.utils import (non_max_suppression_cpu,
+                          rotate_non_max_suppression_cpu)
 
 
 def nms_cc(dets, thresh):

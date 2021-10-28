@@ -4,9 +4,9 @@ from pathlib import Path
 import numba
 import numpy as np
 from numba import cuda
-
 from second.utils.buildtools.pybind11_build import load_pb11
 
+"""
 try:
     from second.core.non_max_suppression.nms import non_max_suppression
 except:
@@ -17,6 +17,9 @@ except:
         current_dir,
         cuda=True)
     from second.core.non_max_suppression.nms import non_max_suppression
+"""
+# replace cuda version(above) non_max_supperssion
+from spconv.utils import non_max_suppression
 
 
 @cuda.jit('(float32[:], float32[:])', device=True, inline=True)
